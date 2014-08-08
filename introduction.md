@@ -37,5 +37,9 @@ Packer (version 0.6.0+)
 
 [www.packer.io/downloads.html](http://www.packer.io/downloads.html)
 
-
-
+!SLIDE
+## Configure local machine
+```
+boot2docker start
+export DOCKER_HOST=tcp://:2375
+```
