@@ -1,0 +1,7 @@
+{
+    "service": {
+        "name": "python",
+        "tags": ["master"],
+        "port": 3000
+    }
+}
