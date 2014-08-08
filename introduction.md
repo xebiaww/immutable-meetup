@@ -3,7 +3,7 @@
 
 ![Docker logo](img/docker-logo-no-text.png)
 
-Slides: [xebia.github.io/immutable-meetup/slides](http://xebia.github.io/immutable-meetup/slides/)
+Slides: [xebia.github.io/immutable-meetup/](http://xebia.github.io/immutable-meetup/)
 
 Simon van der Veldt - [svanderveldt@xebia.com](mailto:svanderveldt@xebia.com)
 
