@@ -29,7 +29,13 @@ Eventuele presenter notes
 !SLIDE
 ## Toolchain
 
+boot2docker (version 1.1.2+)
 
-!SUB
-- boot2docker v1.1.2+
-- packer 0.6.0+
+[docs.docker.com/installation](http://docs.docker.com/installation/)
+
+Packer (version 0.6.0+)
+
+[www.packer.io/downloads.html](http://www.packer.io/downloads.html)
+
+
+
