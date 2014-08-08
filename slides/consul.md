@@ -28,3 +28,10 @@
 }
 ```
 - Add -config-file /opt/dns.json to the consul command
+
+!SUB
+## Configure environment variables
+
+```
+./envconsul_linux_amd64 -addr="localhost:8500" prefix env
+```
