@@ -14,3 +14,17 @@
 ## Join cluster
 
 - /opt/consul join 172.17.0.25
+
+!SUB
+## Configure DNS for Consul
+
+- dns.json:
+```
+{
+	"recursor": "8.8.8.8",
+	"ports": {
+		"dns": 53
+	}
+}
+```
+- Add -config-file /opt/dns.json to the consul command
