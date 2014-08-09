@@ -1,7 +1,8 @@
 # Packer
+![Packer logo](img/packer.png) <!-- .element: class="noborder" -->
 
 
-!SLIDE
+!SUB
 ## Packer introduction
 
 
@@ -15,13 +16,13 @@
 
 !SUB
 ### Step 1 - Create Packer template
-`exampletemplate.json`
+`example.json`
 ```
 {
   "builders": [{
     "type": "docker",
     "image": "debian:wheezy",
-    "export_path": "exampleimage.tar"
+    "export_path": "example.tar"
   }]
 }
 ```
@@ -32,10 +33,27 @@
 packer build exampletemplate.json
 ```
 
+!NOTE
+Note that it's a good idea to validate the Packer template first.
+You can do so with `packer validate exampletemplate.json`
+
 
 !SUB
 ### Result! 
-`exampleimage.tar`
+```
+==> docker: Creating a temporary directory for sharing data...
+==> docker: Pulling Docker image: debian:wheezy
+    docker: Pulling repository debian
+==> docker: Starting docker container...
+    docker: Run command: docker run -d -i -t -v /var/folders/yb/tbryjz896sgc6wl82k2m5y6r0000gn/T/packer-docker059094652:/packer-files debian:wheezy /bin/bash
+    docker: Container ID: 2d087f4e41fd9282fda315e5be0505ea139faea8ed03ff784323ea6124da704a
+==> docker: Exporting the container
+==> docker: Killing the container: 2d087f4e41fd9282fda315e5be0505ea139faea8ed03ff784323ea6124da704a
+Build 'docker' finished.
+
+==> Builds finished. The artifacts of successful builds are:
+--> docker: Exported Docker file: exampleimage.tar
+```
 
 
 !SUB
@@ -44,6 +62,8 @@ Import the image into Docker to use it
 
 ```
 cat exampleimage.tar | docker import - simonvanderveldt:exampleimage
+#or
+docker import - simonvanderveldt:exampleimage < exampleimage.tar
 ```
 
 Create a new container from your image
@@ -53,3 +73,39 @@ docker run -ti simonvanderveldt:exampleimage /bin/bash
 
 !NOTE
 Note that it's possible to have Packer automatically import the generated image into Docker by using the [docker-import](http://www.packer.io/docs/post-processors/docker-import.html) post-processor.
+
+
+!SLIDE
+## Make your image do something
+`examplefoo.json`
+```
+{
+  "builders": [
+  {
+    "type": "docker",
+    "image": "debian:wheezy",
+    "export_path": "minimalfoo.tar"
+  }],
+  "provisioners": [
+  {
+    "type": "shell",
+    "inline": [
+    "echo orange > /opt/fruit.txt"
+    ]
+  }]
+}
+```
+
+
+!SUB
+import and run it
+```
+packer build examplefoo.json
+cat examplefoo.tar | docker import - simonvanderveldt:examplefoo
+docker run -ti simonvanderveldt:examplefoo /bin/bash
+```
+see the fruit of your labour
+```
+root@18220a274fbb:/# cat /opt/fruit.txt
+orange
+```
