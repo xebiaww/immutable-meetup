@@ -77,14 +77,14 @@ Note that it's possible to have Packer automatically import the generated image 
 
 !SLIDE
 ## Make your image do something
-`examplefoo.json`
+`fruit.json`
 ```
 {
   "builders": [
   {
     "type": "docker",
     "image": "debian:wheezy",
-    "export_path": "minimalfoo.tar"
+    "export_path": "fruit.tar"
   }],
   "provisioners": [
   {
@@ -98,14 +98,47 @@ Note that it's possible to have Packer automatically import the generated image 
 
 
 !SUB
-import and run it
+Import the image & run it
 ```
-packer build examplefoo.json
-cat examplefoo.tar | docker import - simonvanderveldt:examplefoo
-docker run -ti simonvanderveldt:examplefoo /bin/bash
+packer build fruit.json
+cat fruit.tar | docker import - simonvanderveldt:fruit
+docker run -ti simonvanderveldt:fruit /bin/bash
 ```
-see the fruit of your labour
+
+
+!SUB
+See the fruit of your labour
 ```
 root@18220a274fbb:/# cat /opt/fruit.txt
 orange
+```
+
+!SLIDE
+## Your first application image
+`python.json`
+```
+{
+  "builders": [
+  {
+    "type": "docker",
+    "image": "debian:wheezy",
+    "export_path": "python.tar"
+  }],
+  "provisioners": [
+  {
+    "type": "shell",
+    "inline": [
+      "apt-get update",
+      "apt-get -y install python"
+    ]
+  }]
+}
+```
+
+!SUB
+Import the image & run it
+```
+packer build python.json
+cat python.tar | docker import - simonvanderveldt:python
+docker run -ti simonvanderveldt:python python
 ```
