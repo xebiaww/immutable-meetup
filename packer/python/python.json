@@ -1,0 +1,18 @@
+{
+  "builders": [
+        {
+            "type": "docker",
+            "image": "debian:wheezy",
+            "export_path": "python.tar"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "apt-get update",
+                "apt-get -y install python"
+            ]
+        }
+    ]
+}
