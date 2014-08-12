@@ -142,3 +142,8 @@ packer build python.json
 cat python.tar | docker import - simonvanderveldt:python
 docker run -ti simonvanderveldt:python python
 ```
+
+
+!SLIDE
+## DIY
+Build & run a mongodb image
