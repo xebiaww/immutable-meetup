@@ -1,0 +1,15 @@
+{
+    "builders": [
+    {
+        "type": "docker",
+        "image": "debian:wheezy",
+        "export_path": "fruit.tar"
+    }],
+    "provisioners": [
+    {
+        "type": "shell",
+        "inline": [
+        "echo orange > /opt/fruit.txt"
+        ]
+    }]
+}

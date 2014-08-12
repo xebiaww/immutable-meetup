@@ -1,0 +1,19 @@
+{
+  "builders": [
+        {
+            "type": "docker",
+            "image": "debian:wheezy",
+            "export_path": "mongodb.tar"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "apt-get update",
+                "apt-get -y install mongodb",
+                "mkdir /data && mkdir /data/db"
+            ]
+        }
+    ]
+}

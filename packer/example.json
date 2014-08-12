@@ -2,6 +2,6 @@
   "builders": [{
     "type": "docker",
     "image": "debian:wheezy",
-    "export_path": "exampleimage.tar"
+    "export_path": "example.tar"
   }]
 }
