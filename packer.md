@@ -61,14 +61,14 @@ Build 'docker' finished.
 Import the image into Docker to use it
 
 ```
-cat exampleimage.tar | docker import - simonvanderveldt:exampleimage
+cat exampleimage.tar | docker import - repo:exampleimage
 #or
-docker import - simonvanderveldt:exampleimage < exampleimage.tar
+docker import - repo:exampleimage < exampleimage.tar
 ```
 
 Create a new container from your image
 ```
-docker run -ti simonvanderveldt:exampleimage /bin/bash
+docker run -ti repo:exampleimage /bin/bash
 ```
 
 !NOTE
@@ -101,8 +101,8 @@ Note that it's possible to have Packer automatically import the generated image 
 Import the image & run it
 ```
 packer build fruit.json
-cat fruit.tar | docker import - simonvanderveldt:fruit
-docker run -ti simonvanderveldt:fruit /bin/bash
+cat fruit.tar | docker import - repo:fruit
+docker run -ti repo:fruit /bin/bash
 ```
 
 
@@ -146,8 +146,8 @@ orange
 Import the image & run it
 ```
 packer build hewllowebworld.json
-cat hellowebworld.tar | docker import - simonvanderveldt:hellowebworld
-docker run -ti -p 8080:8080 simonvanderveldt:hellowebworld python /srv/hellowebworld.py
+cat hellowebworld.tar | docker import - repo:hellowebworld
+docker run -ti -p 8080:8080 repo:hellowebworld python /srv/hellowebworld.py
 ```
 
 !SUB
