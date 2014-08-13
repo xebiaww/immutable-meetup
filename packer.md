@@ -115,32 +115,46 @@ orange
 
 !SLIDE
 ## Your first application image
-`python.json`
+`hellowebworld.json`
 ```
 {
   "builders": [
-  {
-    "type": "docker",
-    "image": "debian:wheezy",
-    "export_path": "python.tar"
-  }],
+    {
+      "type": "docker",
+      "image": "debian:wheezy",
+      "export_path": "python.tar"
+    }
+  ],
   "provisioners": [
-  {
-    "type": "shell",
-    "inline": [
-      "apt-get update",
-      "apt-get -y install python"
-    ]
-  }]
+    {
+      "type": "shell",
+      "inline": [
+        "apt-get update",
+        "apt-get -y install python"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "hellowebworld.py",
+      "destination": "/srv/hellowebworld.py"
+    }
+  ]
 }
 ```
 
 !SUB
 Import the image & run it
 ```
-packer build python.json
-cat python.tar | docker import - simonvanderveldt:python
-docker run -ti simonvanderveldt:python python
+packer build hewllowebworld.json
+cat hellowebworld.tar | docker import - simonvanderveldt:hellowebworld
+docker run -ti -p 8080:8080 simonvanderveldt:hellowebworld python /srv/hellowebworld.py
+```
+
+!SUB
+Check the result
+```
+curl {CONTAINERIP}:8080
+> Hello World!
 ```
 
 
