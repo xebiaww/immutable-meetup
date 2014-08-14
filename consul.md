@@ -107,8 +107,6 @@ Configure DNS for Consul
 	}
 }
 ```
-Add `-config-file /opt/dns.json` to the consul command
-Add `-config-dir /opt/config/` to the consul command and move the dns.json file
 
 !SUB
 Add to your provisioner
@@ -118,6 +116,17 @@ Add to your provisioner
       "source": "config",
       "destination": "/opt/config/"
     }
+```
+
+!SUB
+Provision your image again
+
+!SUB
+Add `-config-dir /opt/config/` to the consul command and move the dns.json file
+
+```
+docker run -ti repo:consul sh
+/opt/consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log & bash
 ```
 
 !SLIDE
