@@ -5,6 +5,26 @@
 !SUB
 ## Packer introduction
 
+"Packer is a tool for creating identical machine images for multiple platforms from a single source configuration."
+
+[_packer.io_](http://www.packer.io)
+
+!SUB
+## Packer features
+
+- A single template  creates images for multiple platforms
+- Use (existing) configuration management
+- Parallel image creation
+
+[_packer.io_](http://www.packer.io/intro)
+
+!SUB
+### Packer works with
+
+- Packer template file (json)
+- Builders (Docker, AWS, etc)  
+- Provisioners (Shell script, Salt, etc)
+
 
 !SLIDE
 ## Your first packer image
