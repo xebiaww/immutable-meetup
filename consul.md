@@ -88,7 +88,13 @@ Join cluster
 !SLIDE
 ## Configure DNS with Consul
 
-- Clean up previous images
+Clean up previous images
+```
+docker rm -f {container-id or name}
+docker rmi -f {image-id or tag}
+```
+
+!SUB
 
 Configure DNS for Consul
 
@@ -150,6 +156,7 @@ Configure environment variables
 ## Configure Service Definition
 
 Add service.json to /config directory:
+
 ```
 {
     "service": {
@@ -159,17 +166,22 @@ Add service.json to /config directory:
     }
 }
 ```
+
 !SUB
-Use service 
+
+Use service:
+
 ```
 dig python.service.consul
 ```
 
 !SUB
-Use tag
+Use tag:
+
 ```
 dig master.python.service.consul
 ```
+
 !SUB
 Try adding one more to the cluster
 
