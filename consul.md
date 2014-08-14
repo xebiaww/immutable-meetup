@@ -7,6 +7,7 @@
 !SLIDE
 ## Create an image with consul installed
 
+!SUB
 Create base image with Packer file consul-base.json
 
 ```
@@ -43,7 +44,7 @@ cat consul-base.tar | docker import - repo:consul
 docker run -ti repo:consul bash
 ```
 
-- You can run the last command directly from your host OS (Mac OS)
+_You can run the last command directly from your host OS (Mac OS)_
 
 !SUB
 Start consul
