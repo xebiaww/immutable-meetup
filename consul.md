@@ -7,7 +7,7 @@
 !SLIDE
 ## Create an image with consul installed
 
-- Create base image with Packer file consul-base.json
+Create base image with Packer file consul-base.json
 
 ```
 {
@@ -35,7 +35,7 @@
 ```
 
 !SUB
-## Start image
+Start image
 
 ```
 packer build consul-base.json
@@ -46,14 +46,14 @@ docker run -ti repo:consul bash
 - You can run the last command directly from your host OS (Mac OS)
 
 !SUB
-## Start consul
+Start consul
 
 ```
 /opt/consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & bash
 ```
 
 !SUB
-## Check that Consul is running
+Check that Consul is running
 
 ```
 ps
@@ -63,10 +63,10 @@ ip addr
 
 ```
 
-- Save the IP address for a later step
+_Save the IP address for a later step_
 
 !SUB
-## Start a second consul
+Start a second consul
 
 ```
 docker run -ti repo:consul sh
@@ -75,7 +75,7 @@ docker run -ti repo:consul sh
 
 
 !SUB
-## Join cluster
+Join cluster
 
 ```
 /opt/consul join {IP OF FIRST IMAGE}
@@ -86,11 +86,11 @@ docker run -ti repo:consul sh
 ```
 
 !SLIDE
-# Configure DNS with Consul
+## Configure DNS with Consul
 
 - Clean up previous images
 
-## Configure DNS for Consul
+Configure DNS for Consul
 
 - dns.json:
 ```
@@ -101,13 +101,12 @@ docker run -ti repo:consul sh
 	}
 }
 ```
-- Add `-config-file /opt/dns.json` to the consul command
-- Add `-config-dir /opt/config/` to the consul command and move the dns.json file
+Add `-config-file /opt/dns.json` to the consul command
+Add `-config-dir /opt/config/` to the consul command and move the dns.json file
 
-
-Add
+!SUB
+Add to your provisioner
 ```
-,
     {
       "type": "file",
       "source": "config",
@@ -116,10 +115,10 @@ Add
 ```
 
 !SLIDE
-# Inject key-value pairs as Environment Variable
+## Inject key-value pairs as Environment Variable
 
 !SUB
-## Install essentials
+Install essentials
 
 ```
 FROM xebia/consul
@@ -129,7 +128,7 @@ CMD /opt/consul agent -data-dir /tmp/consul -config-dir /opt/config/ -dc xebia -
 ```
 
 !SUB
-## Use GUI to set key-value pairs
+Use GUI to set key-value pairs
 
 ```
 FROM xebia/consul
@@ -141,16 +140,16 @@ CMD /opt/consul agent -data-dir /tmp/consul -config-dir /opt/config/ -ui-dir /op
 ```
 
 !SUB
-## Configure environment variables
+Configure environment variables
 
 ```
 ./envconsul_linux_amd64 -addr="localhost:8500" prefix env
 ```
 
-!SUB
+!SLIDE
 ## Configure Service Definition
 
-- Add service.json to /config directory:
+Add service.json to /config directory:
 ```
 {
     "service": {
@@ -160,15 +159,25 @@ CMD /opt/consul agent -data-dir /tmp/consul -config-dir /opt/config/ -ui-dir /op
     }
 }
 ```
-- Use service `dig python.service.consul`
-- Use tag: `dig master.python.service.consul`
-- Try adding one more to the cluster
-
-!SLIDE
-# Create Hello World in Python
+!SUB
+Use service 
+```
+dig python.service.consul
+```
 
 !SUB
-## Install essentials:
+Use tag
+```
+dig master.python.service.consul
+```
+!SUB
+Try adding one more to the cluster
+
+!SLIDE
+## Create Hello World in Python
+
+!SUB
+Install essentials:
 
 - Dockerfile
 ```
