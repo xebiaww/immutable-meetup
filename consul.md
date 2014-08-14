@@ -5,26 +5,28 @@
 
 Consul "is a tool for discovering and configuring services in your infrastructure"
 
+
 _source: consul.io_
 
 !SUB
 
 Features:
-- Service discovery
-- Health checking
-- Key value store
-- Multi-datacenter
+ - Service discovery
+ - Health checking
+ - Key value store
+ - Multi-datacenter
+
 
 _source: consul.io_
 
 !SUB
 
 It works with:
-- Peer to peer networking
-- Gossip protocol (Serf)
-- An agent per node
-- A DNS interace (compatibility)
-- A REST interface (rich API)
+ - Peer to peer networking
+ - Gossip protocol (Serf)
+ - An agent per node
+ - A DNS interace (compatibility)
+ - A REST interface (rich API)
 
 !SLIDE
 ## Create an image with consul installed
