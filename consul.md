@@ -12,6 +12,7 @@ _source: consul.io_
 !SUB
 
 Features:
+
  - Service discovery
  - Health checking
  - Key value store
@@ -23,6 +24,7 @@ _source: consul.io_
 !SUB
 
 It works with:
+
  - Peer to peer networking
  - Gossip protocol (Serf)
  - An agent per node
