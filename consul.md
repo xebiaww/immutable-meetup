@@ -1,5 +1,5 @@
 # Consul
-![Consul logo](img/consul.png) <!-- .element: class="noborder" -->
+![Consul logo](img/consul-logo.png) <!-- .element: class="noborder" -->
 
 !SUB
 ## Consul introduction
