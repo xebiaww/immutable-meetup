@@ -141,7 +141,7 @@ Add to your provisioner
 ```
     {
       "type": "file",
-      "source": "config",
+      "source": "config/",
       "destination": "/opt/config/"
     }
 ```
@@ -153,9 +153,19 @@ Provision your image again, tag it as `consul:dns`
 Add `-config-dir /opt/config/` to the consul command and move the dns.json file
 
 ```
-docker run -ti consul:dns sh
+docker run -ti  --dns 127.0.0.1 -h myhost consul:dns sh
 /opt/consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log & bash
 ```
+
+!SUB
+
+Try the DNS:
+
+```
+dig myhost.node.consul
+ping myhost.node.consul
+```
+
 
 !SLIDE
 ## Configure Service Definition

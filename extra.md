@@ -97,7 +97,7 @@ Install essentials:
     },
     {
       "type": "file",
-      "source": "config",
+      "source": "config/",
       "destination": "/opt/config/"
     },
     {
