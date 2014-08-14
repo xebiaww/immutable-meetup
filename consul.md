@@ -4,18 +4,88 @@
 ## Consul introduction
 
 
+!SLIDE
+## Create an image with consul installed
+
+- Create base image with Packer file consul-base.json
+
+```
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "debian:wheezy",
+      "export_path": "consul.tar"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "cd /opt",
+        "apt-get update",
+        "apt-get -y install unzip wget curl dnsutils procps",
+        "wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.3.1_linux_amd64.zip",
+        "unzip 0.3.1_linux_amd64.zip",
+        "rm 0.3.1_linux_amd64.zip"
+      ]
+    }
+  ]
+}
+```
+
+!SUB
+## Start image
+
+```
+packer build consul-base.json
+cat consul-base.tar | docker import - repo:consul
+docker run -ti repo:consul bash
+```
+
+- You can run the last command directly from your host OS (Mac OS)
+
 !SUB
 ## Start consul
 
-- /opt/consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & bash
+```
+/opt/consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & bash
+```
+
+!SUB
+## Check that Consul is running
+
+```
+ps
+cd opt
+./consul members
+ip addr
+
+```
+
+- Save the IP address for a later step
+
+!SUB
+## Start a second consul
+
+```
+docker run -ti repo:consul sh
+/opt/consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & bash
+```
 
 
 !SUB
 ## Join cluster
 
-- /opt/consul join 172.17.0.25
+- ```/opt/consul join {IP OF FIRST IMAGE}```
 
-!SUB
+- ```/opt/consul members```
+
+!SLIDE
+# Configure DNS with Consul
+
+- Clean up previous images
+
 ## Configure DNS for Consul
 
 - dns.json:
@@ -29,6 +99,17 @@
 ```
 - Add `-config-file /opt/dns.json` to the consul command
 - Add `-config-dir /opt/config/` to the consul command and move the dns.json file
+
+
+Add
+```
+,
+    {
+      "type": "file",
+      "source": "config",
+      "destination": "/opt/config/"
+    }
+```
 
 !SLIDE
 # Inject key-value pairs as Environment Variable
