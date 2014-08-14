@@ -77,9 +77,13 @@ docker run -ti repo:consul sh
 !SUB
 ## Join cluster
 
-- ```/opt/consul join {IP OF FIRST IMAGE}```
+```
+/opt/consul join {IP OF FIRST IMAGE}
+```
 
-- ```/opt/consul members```
+```
+/opt/consul members
+```
 
 !SLIDE
 # Configure DNS with Consul
