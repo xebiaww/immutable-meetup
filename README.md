@@ -27,9 +27,10 @@ Set DNS for Docker image:
 - option: DNS: --dns 127.0.0.1:8600
 - docker run -ti --dns 127.0.0.1 xebia/consul
 - docker run -ti --dns 127.0.0.1 xebia/consul-env
-- docker run -ti --dns 127.0.0.1 xebia/consul-ui
 - docker run -ti --dns 127.0.0.1 -p 8500:8500 xebia/consul-ui
-- docker run -ti --dns 127.0.0.1 -p 8500:8500 --expose 8500 xebia/consul-ui
+- docker run -ti --dns 127.0.0.1 xebia/consul-python
+- docker run -ti --dns 127.0.0.1 xebia/consul-mongo
+
 
 Set Hostname:
 
