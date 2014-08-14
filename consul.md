@@ -3,6 +3,28 @@
 !SUB
 ## Consul introduction
 
+Consul "is a tool for discovering and configuring services in your infrastructure"
+
+_source: consul.io_
+
+!SUB
+
+Features:
+- Service discovery
+- Health checking
+- Key value store
+- Multi-datacenter
+
+_source: consul.io_
+
+!SUB
+
+It works with:
+- Peer to peer networking
+- Gossip protocol (Serf)
+- An agent per node
+- A DNS interace (compatibility)
+- A REST interface (rich API)
 
 !SLIDE
 ## Create an image with consul installed
@@ -40,8 +62,8 @@ Start image
 
 ```
 packer build consul-base.json
-cat consul-base.tar | docker import - repo:consul
-docker run -ti repo:consul bash
+cat consul-base.tar | docker import - consul:base
+docker run -ti consul:base bash
 ```
 
 _You can run the last command directly from your host OS (Mac OS)_
@@ -70,7 +92,7 @@ _Save the IP address for a later step_
 Start a second consul
 
 ```
-docker run -ti repo:consul sh
+docker run -ti consul:base sh
 /opt/consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & bash
 ```
 
@@ -120,13 +142,13 @@ Add to your provisioner
 ```
 
 !SUB
-Provision your image again
+Provision your image again, tag it as `consul:dns`
 
 !SUB
 Add `-config-dir /opt/config/` to the consul command and move the dns.json file
 
 ```
-docker run -ti repo:consul sh
+docker run -ti consul:dns sh
 /opt/consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log & bash
 ```
 

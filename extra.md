@@ -37,7 +37,7 @@ Configure environment variables
 Build & run a mongodb image
 
 !SLIDE
-## Connect Python Hello World to MongoDB
+## Connect Python Hello World to MongoDB using Consul
 
 !SUB
 Install essentials:
