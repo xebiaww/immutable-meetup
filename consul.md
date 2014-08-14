@@ -161,10 +161,10 @@ dig master.fruit.service.consul
 ```
 
 !SUB
-Try adding one more to the cluster
+Try adding one more container to the cluster and `dig` agains
 
 !SUB
-Make this work with the image made in the Packer section:
+Make this work with the web server image you made in the Packer section:
 
 ```
 curl fruit.service.consul:8080

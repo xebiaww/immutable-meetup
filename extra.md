@@ -1,5 +1,4 @@
-!SLIDE
-# Extra Exercises for fast students
+# Extra exercises for fast students
 
 !SLIDE
 ## Inject key-value pairs as Environment Variable
