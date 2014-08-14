@@ -7,22 +7,54 @@
 Install essentials
 
 ```
-FROM repo:consul
-RUN wget --no-check-certificate https://github.com/hashicorp/envconsul/releases/download/v0.2.0/envconsul_linux_amd64
-RUN chmod 755 ./envconsul_linux_amd64
-CMD /opt/consul agent -data-dir /tmp/consul -config-dir /opt/config/ -dc xebia -client 0.0.0.0 -bind 0.0.0.0 > /var/consul.log & bash
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "consul:dns",
+      "export_path": "consul-ui.tar",
+      "pull": false
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.3.1_web_ui.zip",
+        "mkdir ui",
+        "unzip 0.3.1_web_ui.zip -d /opt/ui",
+        "rm 0.3.1_web_ui.zip"
+      ]
+    }
+  ]
+}
 ```
 
 !SUB
 Use GUI to set key-value pairs
 
 ```
-FROM repo:consul
-RUN wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.3.1_web_ui.zip
-RUN mkdir ui
-RUN unzip 0.3.1_web_ui.zip -d /opt/ui
-RUN rm 0.3.1_web_ui.zip
-CMD /opt/consul agent -data-dir /tmp/consul -config-dir /opt/config/ -ui-dir /opt/ui/dist -dc xebia -client 0.0.0.0 -bind 0.0.0.0 > /var/consul.log & bash
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "consul:dns",
+      "export_path": "consul-ui.tar",
+      "pull": false
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.3.1_web_ui.zip",
+        "mkdir ui",
+        "unzip 0.3.1_web_ui.zip -d /opt/ui",
+        "rm 0.3.1_web_ui.zip"
+      ]
+    }
+  ]
+}
 ```
 
 !SUB
@@ -44,11 +76,47 @@ Install essentials:
 
 - Dockerfile
 ```
-FROM xebia/consul
-ADD config /opt/config/
-RUN apt-get -y install python
-RUN wget https://bootstrap.pypa.io/get-pip.py
-RUN python get-pip.py
-RUN pip install pymongo
-CMD /opt/consul agent -data-dir /tmp/consul -config-dir /opt/config/ -dc xebia -client 0.0.0.0 -bind 0.0.0.0 > /var/consul.log & bash
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "consul:dns",
+      "export_path": "consul-python.tar",
+      "pull": false
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "apt-get -y install python",
+        "wget https://bootstrap.pypa.io/get-pip.py",
+        "python get-pip.py",
+        "pip install pymongo"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "config",
+      "destination": "/opt/config/"
+    },
+    {
+      "type": "file",
+      "source": "ws.py",
+      "destination": "/opt/ws.py"
+    }
+  ]
+}
 ```
+
+!SLIDE
+## DIY
+
+Perform health checks on each service
+
+!SLIDE
+## DIY
+
+Configure HAProxy as a load balancer using Consul
+
+http://www.hashicorp.com/blog/haproxy-with-consul.html
