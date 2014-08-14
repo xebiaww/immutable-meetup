@@ -156,8 +156,3 @@ Check the result
 curl {CONTAINERIP}:8080
 > Hello World!
 ```
-
-
-!SLIDE
-## DIY
-Build & run a mongodb image
