@@ -11,7 +11,7 @@ _source: consul.io_
 
 !SUB
 
-Features:
+### Consul Features:
 
  - Service discovery
  - Health checking
@@ -23,7 +23,7 @@ _source: consul.io_
 
 !SUB
 
-It works with:
+### Consul works with:
 
  - Peer to peer networking
  - Gossip protocol (Serf)
