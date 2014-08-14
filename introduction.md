@@ -23,27 +23,38 @@ Adriaan de Jonge - [adejonge@xebia.com](mailto:adejonge@xebia.com)
 
 
 !SUB
-## Toolchain
-
-boot2docker (version 1.1.2+)
+Install boot2docker
 
 [docs.docker.com/installation](http://docs.docker.com/installation)
 
-Packer (version 0.6.0+)
-
-[packer.io/downloads](http://packer.io/downloads)
-
-
 !SUB
-## Configure local machine
+Start boot2docker and ssh into it
 ```
 boot2docker start
-export DOCKER_HOST=tcp://:2375
+boot2docker ssh
 ```
 
+!SUB
+Install Packer (inside boot2docker)
+```
+wget http://dl.bintray.com/mitchellh/packer/0.6.1_linux_amd64.zip
+unzip 0.6.1_linux_amd64.zip -d /usr/local/bin/
+```
 
 !SUB
-### Files
+Check if it works
+```
+packer --version
+> Packer v0.6.1
+```
+
+!SUB
+Get the files
+
 [github.com/xebia/immutable-meetup](https://github.com/xebia/immutable-meetup)
+```
+git clone https://github.com/xebia/immutable-meetup.git
+```
+
 
 
