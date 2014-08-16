@@ -50,12 +50,12 @@
 !SUB
 ### Step 2 - Build image
 ```
-packer build exampletemplate.json
+packer build example.json
 ```
 
 !NOTE
 Note that it's a good idea to validate the Packer template first.
-You can do so with `packer validate exampletemplate.json`
+You can do so with `packer validate example.json`
 
 
 !SUB
@@ -72,27 +72,49 @@ You can do so with `packer validate exampletemplate.json`
 Build 'docker' finished.
 
 ==> Builds finished. The artifacts of successful builds are:
---> docker: Exported Docker file: exampleimage.tar
+--> docker: Exported Docker file: example.tar
 ```
 
+
+!SLIDE
+## How to use your image
 
 !SUB
-### Using your image
-Import the image into Docker to use it
+Import the image into Docker
 
 ```
-cat exampleimage.tar | docker import - repo:exampleimage
-#or
-docker import - repo:exampleimage < exampleimage.tar
+cat example.tar | docker import - repo:example
 ```
-
-Create a new container from your image
+or
 ```
-docker run -ti repo:exampleimage /bin/bash
+docker import - repo:example < example.tar
 ```
 
 !NOTE
-Note that it's possible to have Packer automatically import the generated image into Docker by using the [docker-import](http://www.packer.io/docs/post-processors/docker-import.html) post-processor.
+Note that it's possible to have Packer automatically import the generated image into Docker by using the [docker-import](http://www.packer.io/docs/post-processors/docker-import.html) post-processor
+and that it's also possible to push the image to a Docker registry using the [docker-push](http://www.packer.io/docs/post-processors/docker-push.html) post-processor.
+
+!SUB
+Create a new container from your image
+```
+docker run -ti repo:example /bin/bash
+> root@05938c23a8d8:/#
+```
+
+!NOTE
+To check if you're inside a container run
+```
+root@05938c23a8d8:/# cat /proc/1/cgroup
+9:perf_event:/docker/05938c23a8d8e3c48f2ba9632baf55a2fcc01fa218aeeb9851b514c30df851e5
+8:blkio:/docker/05938c23a8d8e3c48f2ba9632baf55a2fcc01fa218aeeb9851b514c30df851e5
+7:net_cls:/
+6:freezer:/docker/05938c23a8d8e3c48f2ba9632baf55a2fcc01fa218aeeb9851b514c30df851e5
+5:devices:/docker/05938c23a8d8e3c48f2ba9632baf55a2fcc01fa218aeeb9851b514c30df851e5
+4:memory:/docker/05938c23a8d8e3c48f2ba9632baf55a2fcc01fa218aeeb9851b514c30df851e5
+3:cpuacct:/docker/05938c23a8d8e3c48f2ba9632baf55a2fcc01fa218aeeb9851b514c30df851e5
+2:cpu:/docker/05938c23a8d8e3c48f2ba9632baf55a2fcc01fa218aeeb9851b514c30df851e5
+1:cpuset:/
+```
 
 
 !SLIDE
@@ -116,21 +138,18 @@ Note that it's possible to have Packer automatically import the generated image 
 }
 ```
 
-
 !SUB
-Import the image & run it
+Build & import the image
 ```
 packer build fruit.json
 cat fruit.tar | docker import - repo:fruit
-docker run -ti repo:fruit /bin/bash
 ```
-
 
 !SUB
 See the fruit of your labour
 ```
-root@18220a274fbb:/# cat /opt/fruit.txt
-orange
+docker run -ti repo:fruit cat /opt/fruit.txt
+> orange
 ```
 
 !SLIDE
@@ -163,7 +182,7 @@ orange
 ```
 
 !SUB
-Import the image & run it
+Build, import & run the image
 ```
 packer build hewllowebworld.json
 cat hellowebworld.tar | docker import - repo:hellowebworld
