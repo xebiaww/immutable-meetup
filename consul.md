@@ -35,8 +35,7 @@ _source: consul.io_
 ## Create an image with consul installed
 
 !SUB
-Create base image with Packer file consul-base.json
-
+`consul-base.json`
 ```
 {
   "builders": [
@@ -63,15 +62,13 @@ Create base image with Packer file consul-base.json
 ```
 
 !SUB
-Start image
+Build, import & run the image
 
 ```
 packer build consul-base.json
 cat consul-base.tar | docker import - consul:base
 docker run -ti consul:base bash
 ```
-
-_You can run the last command directly from your host OS (Mac OS)_
 
 !SUB
 Start consul
@@ -94,10 +91,10 @@ ip addr
 _Save the IP address for a later step_
 
 !SUB
-Start a second consul
+Create a 2nd consul container
 
 ```
-docker run -ti consul:base sh
+docker run -ti consul:base bash
 /opt/consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & bash
 ```
 
