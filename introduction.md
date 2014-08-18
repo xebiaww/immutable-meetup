@@ -32,9 +32,12 @@ Adriaan de Jonge - [adejonge@xebia.com](mailto:adejonge@xebia.com)
 
 The deliverable of the DevOps/NoOps team is a fully installed and configured server image.
 
-Questions answered in this meetup: 
 
- - How do you easily delivery fully confugred server images?
+!SUB
+
+*Questions answered in this meetup: *
+
+ - How do you easily delivery fully configured server images?
  - How do you configure an image without modifying it?
 
 
