@@ -75,7 +75,7 @@ docker run -ti consul:base bash
 Start consul
 
 ```
-consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & bash
+consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log &
 ```
 
 !SUB
