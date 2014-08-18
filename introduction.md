@@ -37,7 +37,7 @@ The deliverable of the DevOps/NoOps team is a fully installed and configured ser
 
 *Questions answered in this meetup: *
 
- - How do you easily delivery fully configured server images?
+ - How do you easily deliver fully configured server images?
  - How do you configure an image without modifying it?
 
 
