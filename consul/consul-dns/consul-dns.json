@@ -10,11 +10,11 @@
     {
       "type": "shell",
       "inline": [
-        "cd /opt",
+        "cd /tmp",
         "apt-get update",
         "apt-get -y install unzip wget curl dnsutils procps",
         "wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.3.1_linux_amd64.zip",
-        "unzip 0.3.1_linux_amd64.zip",
+        "unzip 0.3.1_linux_amd64.zip -d /usr/local/bin/",
         "rm 0.3.1_linux_amd64.zip"
       ]
     },
