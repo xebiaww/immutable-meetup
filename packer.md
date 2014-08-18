@@ -161,7 +161,7 @@ docker run -ti repo:fruit cat /opt/fruit.txt
     {
       "type": "docker",
       "image": "debian:wheezy",
-      "export_path": "python.tar"
+      "export_path": "hellowebworld.tar"
     }
   ],
   "provisioners": [
