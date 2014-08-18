@@ -184,7 +184,7 @@ docker run -ti repo:fruit cat /opt/fruit.txt
 !SUB
 Build, import & run the image
 ```
-packer build hewllowebworld.json
+packer build hellowebworld.json
 cat hellowebworld.tar | docker import - repo:hellowebworld
 docker run -ti -p 8080:8080 repo:hellowebworld python /srv/hellowebworld.py
 ```
