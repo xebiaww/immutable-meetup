@@ -50,11 +50,11 @@ Consul "is a tool for discovering and configuring services in your infrastructur
     {
       "type": "shell",
       "inline": [
-        "cd /opt",
+        "cd /tmp",
         "apt-get update",
         "apt-get -y install unzip wget curl dnsutils procps",
         "wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.3.1_linux_amd64.zip",
-        "unzip 0.3.1_linux_amd64.zip",
+        "unzip 0.3.1_linux_amd64.zip -d /usr/local/bin/",
         "rm 0.3.1_linux_amd64.zip"
       ]
     }
@@ -75,7 +75,7 @@ docker run -ti consul:base bash
 Start consul
 
 ```
-/opt/consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & bash
+consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & bash
 ```
 
 !SUB
@@ -83,8 +83,7 @@ Check that Consul is running
 
 ```
 ps
-cd opt
-./consul members
+consul members
 ip addr
 
 ```
@@ -96,7 +95,7 @@ Create a 2nd consul container
 
 ```
 docker run -ti consul:base bash
-/opt/consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & bash
+consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & bash
 ```
 
 
@@ -104,11 +103,11 @@ docker run -ti consul:base bash
 Join cluster
 
 ```
-/opt/consul join {IP OF FIRST IMAGE}
+consul join {IP OF FIRST IMAGE}
 ```
 
 ```
-/opt/consul members
+consul members
 ```
 
 !SLIDE
@@ -152,7 +151,7 @@ Add `-config-dir /opt/config/` to the consul command and move the dns.json file
 
 ```
 docker run -ti  --dns 127.0.0.1 -h myhost consul:dns sh
-/opt/consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log & bash
+consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log & bash
 ```
 
 !SUB
