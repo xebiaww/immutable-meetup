@@ -3,7 +3,7 @@
     {
       "type": "docker",
       "image": "debian:wheezy",
-      "export_path": "base-consul.tar"
+      "export_path": "consul-base.tar"
     }
   ],
   "provisioners": [
