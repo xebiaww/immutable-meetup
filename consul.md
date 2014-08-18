@@ -151,7 +151,7 @@ Add `-config-dir /opt/config/` to the consul command and move the dns.json file
 
 ```
 docker run -ti  --dns 127.0.0.1 -h myhost consul:dns sh
-consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log & bash
+consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log & 
 ```
 
 !SUB
