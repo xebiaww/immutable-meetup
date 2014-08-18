@@ -17,6 +17,26 @@ Adriaan de Jonge - [adejonge@xebia.com](mailto:adejonge@xebia.com)
 !SLIDE
 # Introduction
 
+!SUB
+"An Immutable Server is [...] a server that once deployed, is never modified, merely replaced with a new updated instance"
+
+[_Kief Morris @ martinfowler.com_](http://martinfowler.com/bliki/ImmutableServer.html)
+
+!SUB
+## Antonyms
+
+ - Snowflake Server
+ - Phoenix Server
+
+!SUB
+
+The deliverable of the DevOps/NoOps team is a fully installed and configured server image.
+
+Questions answered in this meetup: 
+
+ - How do you easily delivery fully confugred server images?
+ - How do you configure an image without modifying it?
+
 
 !SLIDE
 # Setup

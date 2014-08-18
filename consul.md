@@ -7,7 +7,8 @@
 Consul "is a tool for discovering and configuring services in your infrastructure"
 
 
-_source: consul.io_
+[_consul.io_](http://www.consul.io)
+
 
 !SUB
 
@@ -19,7 +20,7 @@ _source: consul.io_
  - Multi-datacenter
 
 
-_source: consul.io_
+[_consul.io_](http://www.consul.io)
 
 !SUB
 
