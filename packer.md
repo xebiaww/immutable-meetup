@@ -1,5 +1,5 @@
 # Packer
-![Packer logo](img/packer.png) <!-- .element: class="noborder" -->
+![Packer logo](img/packer-logo.png) <!-- .element: class="noborder" -->
 
 
 !SUB

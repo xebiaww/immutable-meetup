@@ -3,7 +3,7 @@ with
 
 ![Docker logo](img/docker-logo-no-text.png) <!-- .element: class="noborder" -->
 ![plus](img/plus.png) <!-- .element: class="noborder" -->
-![Packer logo](img/packer.png) <!-- .element: class="noborder" -->
+![Packer logo](img/packer-logo.png) <!-- .element: class="noborder" -->
 ![plus](img/plus.png) <!-- .element: class="noborder" -->
 ![Consul logo](img/consul-logo.png) <!-- .element: class="noborder" -->
 
