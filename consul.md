@@ -43,7 +43,7 @@ Consul "is a tool for discovering and configuring services in your infrastructur
     {
       "type": "docker",
       "image": "debian:wheezy",
-      "export_path": "consul.tar"
+      "export_path": "consul-base.tar"
     }
   ],
   "provisioners": [
