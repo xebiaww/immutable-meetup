@@ -3,7 +3,7 @@
         {
             "type": "docker",
             "image": "debian:wheezy",
-            "export_path": "python.tar"
+            "export_path": "hellowebworld.tar"
         }
     ],
     "provisioners": [
