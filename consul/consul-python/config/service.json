@@ -1,7 +1,7 @@
 {
     "service": {
-        "name": "python",
+        "name": "fruit",
         "tags": ["master"],
-        "port": 3000
+        "port": 8080
     }
 }
