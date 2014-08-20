@@ -1,4 +1,4 @@
-# Extra exercises for fast students
+# Extra exercises
 
 !SLIDE
 ## Inject key-value pairs as Environment Variable
@@ -31,31 +31,16 @@ Install essentials
 ```
 
 !SUB
-Use GUI to set key-value pairs
+Set key-value pairs using the HTTP API
+```
+curl -X PUT -d 'value' http://localhost:8500/v1/kv/web/key
+```
 
-```
-{
-  "builders": [
-    {
-      "type": "docker",
-      "image": "consul:dns",
-      "export_path": "consul-ui.tar",
-      "pull": false
-    }
-  ],
-  "provisioners": [
-    {
-      "type": "shell",
-      "inline": [
-        "wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.3.1_web_ui.zip",
-        "mkdir ui",
-        "unzip 0.3.1_web_ui.zip -d /opt/ui",
-        "rm 0.3.1_web_ui.zip"
-      ]
-    }
-  ]
-}
-```
+!SUB
+You can also set key-value pairs using the Consul web ui
+![Consul web ui](img/consul-webui.png) <!-- .element: class="noborder" -->
+[consul.io/intro/getting-started/ui](http://www.consul.io/intro/getting-started/ui.html)
+
 
 !SUB
 Configure environment variables
@@ -69,12 +54,12 @@ Configure environment variables
 Build & run a mongodb image
 
 !SLIDE
-## Connect Python Hello World to MongoDB using Consul
+## DIY
+Connect `hellowebworld` to MongoDB using Consul
 
 !SUB
 Install essentials:
 
-- Dockerfile
 ```
 {
   "builders": [
@@ -119,4 +104,4 @@ Perform health checks on each service
 
 Configure HAProxy as a load balancer using Consul
 
-http://www.hashicorp.com/blog/haproxy-with-consul.html
+[hashicorp.com/blog/haproxy-with-consul](http://hashicorp.com/blog/haproxy-with-consul.html)

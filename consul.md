@@ -29,7 +29,7 @@ Consul "is a tool for discovering and configuring services in your infrastructur
  - Peer to peer networking
  - Gossip protocol (Serf)
  - An agent per node
- - A DNS interace (compatibility)
+ - A DNS interface (compatibility)
  - A REST interface (rich API)
 
 !SLIDE
@@ -147,9 +147,9 @@ Add to your provisioner
 Provision your image again, tag it as `consul:dns`
 
 !SUB
-Add `-config-dir /opt/config/` to the consul command and move the dns.json file
+Add `-config-dir /opt/config/` to the consul command
 
-```
+```d
 docker run -ti  --dns 127.0.0.1 -h myhost consul:dns bash
 consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log & 
 ```
@@ -195,7 +195,7 @@ dig master.fruit.service.consul
 ```
 
 !SUB
-Try adding one more container to the cluster and `dig` agains
+Try adding one more container to the cluster and `dig` again
 
 !SUB
 Make this work with the web server image you made in the Packer section:
