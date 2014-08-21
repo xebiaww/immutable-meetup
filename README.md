@@ -18,7 +18,8 @@ Build and tag Docker image:
 - docker build -t xebia/consul base
 - docker build -t xebia/consul-env consul-env
 - docker build -t xebia/consul-ui consul-ui
-- 
+
+
 ## Consul
 
 Set DNS for Docker image:
