@@ -1,6 +1,6 @@
 # Cheat Sheet Docker / Packer / Consul
 
-## Consul
+## Docker
 
 - boot2docker start
 - export DOCKER_HOST=tcp://:2375
@@ -9,7 +9,7 @@ Delete all containers:
 
 - docker rm -f $(docker ps -a -q)
 
-Delete all images:
+Delete all images (including running):
 
 - docker rmi -f $(docker images -a -q)
 
@@ -18,6 +18,8 @@ Build and tag Docker image:
 - docker build -t xebia/consul base
 - docker build -t xebia/consul-env consul-env
 - docker build -t xebia/consul-ui consul-ui
+- 
+## Consul
 
 Set DNS for Docker image:
 
