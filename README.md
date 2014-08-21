@@ -1,7 +1,4 @@
-On master branch
-
-
-# Log commando's
+# Cheat Sheet Docker / Packer / Consul
 
 ## Consul
 
