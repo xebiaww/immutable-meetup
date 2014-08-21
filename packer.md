@@ -49,14 +49,15 @@
 
 !SUB
 ### Step 2 - Build image
+Validate your template
+```
+packer validate example.json
+```
+
+Build your image
 ```
 packer build example.json
 ```
-
-!NOTE
-Note that it's a good idea to validate the Packer template first.
-You can do so with `packer validate example.json`
-
 
 !SUB
 ### Result! 
@@ -89,10 +90,14 @@ or
 ```
 docker import - repo:example < example.tar
 ```
+<small>Please remove the image files after you've imported them.<br>We have to do this because there is limited space available within the boot2docker VM</small>
 
 !NOTE
 Note that it's possible to have Packer automatically import the generated image into Docker by using the [docker-import](http://www.packer.io/docs/post-processors/docker-import.html) post-processor
 and that it's also possible to push the image to a Docker registry using the [docker-push](http://www.packer.io/docs/post-processors/docker-push.html) post-processor.
+
+
+
 
 !SUB
 Create a new container from your image
@@ -144,6 +149,7 @@ Build & import the image
 packer build fruit.json
 cat fruit.tar | docker import - repo:fruit
 ```
+<small>Don't forget to remove the image file after you've imported it</small>
 
 !SUB
 See the fruit of your labour
