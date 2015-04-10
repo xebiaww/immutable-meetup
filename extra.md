@@ -45,17 +45,27 @@ consul join {IP of one of cluster members}
 ```
 
 !SUB
-Now you can also set key-value pairs using the Consul web ui
+Now you can also set key-value pairs using the Consul web ui at http://192/168.59.103:8500
 ![Consul web ui](img/consul-webui.png) <!-- .element: class="noborder" -->
 [consul.io/intro/getting-started/ui](http://www.consul.io/intro/getting-started/ui.html)
 
 
 !SUB
+See the key/values in /web translated to environment variables
+```
+./envconsul web env
+```
+
+!SUB
+See the restarting of your "application" in case of updates
+```
+envconsul web /bin/sh -c "env; echo "-----"; sleep 1000"
+```
 Go back to consul-env container and check the changes you make in the UI
 
-```
-./envconsul_linux_amd64 -addr="localhost:8500" prefix env
-```
+
+
+
 
 !SLIDE
 ## DIY
