@@ -36,39 +36,25 @@ Consul "is a tool for discovering and configuring services in your infrastructur
 ## Create an image with consul installed
 
 !SUB
-`consul-base.json`
+`consul-base/Dockerfile`
 ```
-{
-  "builders": [
-    {
-      "type": "docker",
-      "image": "debian:wheezy",
-      "export_path": "consul-base.tar"
-    }
-  ],
-  "provisioners": [
-    {
-      "type": "shell",
-      "inline": [
-        "cd /tmp",
-        "apt-get update",
-        "apt-get -y install unzip wget curl dnsutils procps",
-        "wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.3.1_linux_amd64.zip",
-        "unzip 0.3.1_linux_amd64.zip -d /usr/local/bin/",
-        "rm 0.3.1_linux_amd64.zip"
-      ]
-    }
-  ]
-}
+FROM debian:wheezy
+WORKDIR /opt
+ENV PATH /opt:$PATH
+RUN apt-get update
+RUN apt-get -y install unzip wget curl dnsutils procps
+RUN wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.5.0_linux_amd64.zip
+RUN unzip 0.5.0_linux_amd64.zip
+RUN rm 0.5.0_linux_amd64.zip
+
 ```
 
 !SUB
 Build, import & run the image
 
 ```
-packer build consul-base.json
-cat consul-base.tar | docker import - consul:base
-docker run -ti consul:base bash
+docker build -t xebia/consul-base consul-base
+docker run -ti xebia/consul-base bash
 ```
 
 !SUB
@@ -94,7 +80,7 @@ _Save the IP address for a later step_
 Create a 2nd consul container
 
 ```
-docker run -ti consul:base bash
+docker run -ti xebia/consul-base bash
 consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & 
 ```
 
@@ -114,10 +100,9 @@ consul members
 ## Configure DNS with Consul
 
 !SUB
-Clean up previous images
+Clean up previous containers
 ```
 docker rm -f {container-id or name}
-docker rmi -f {image-id or tag}
 ```
 
 !SUB
@@ -134,23 +119,20 @@ Add config/dns.json:
 ```
 
 !SUB
-Add to your provisioner
+Create a new Dockerfile
 ```
-    {
-      "type": "file",
-      "source": "config/",
-      "destination": "/opt/config/"
-    }
+FROM xebia/consul-base
+ADD config /opt/config/
 ```
 
 !SUB
-Provision your image again, tag it as `consul:dns`
+Build your image and tag it as `xebia/consul-dns`
 
 !SUB
 Add `-config-dir /opt/config/` to the consul command
 
 ```d
-docker run -ti  --dns 127.0.0.1 -h myhost consul:dns bash
+docker run -ti  --dns 127.0.0.1 -h myhost xebia/consul-dns bash
 consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log & 
 ```
 
