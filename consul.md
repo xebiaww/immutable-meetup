@@ -213,6 +213,7 @@ consul leave
 
 !SLIDE
 
+## Add an app that offers the service
 Now set up the Python web app to run the service
 
 ```
