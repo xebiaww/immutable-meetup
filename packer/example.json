@@ -1,7 +1,0 @@
-{
-  "builders": [{
-    "type": "docker",
-    "image": "debian:wheezy",
-    "export_path": "example.tar"
-  }]
-}

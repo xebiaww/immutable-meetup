@@ -1,7 +1,0 @@
-{
-    "service": {
-        "name": "mongo",
-        "tags": ["master"],
-        "port": 7000
-    }
-}
