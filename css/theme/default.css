@@ -146,3 +146,7 @@ body {
  *********************************************/
 .reveal .slide-number {
   color: #13daec; }
+  
+  sup {
+    font-size: 0.5em;
+  }
