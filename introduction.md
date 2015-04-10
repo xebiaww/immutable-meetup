@@ -3,16 +3,13 @@ with
 
 ![Docker logo](img/docker-logo-no-text.png) <!-- .element: class="noborder" -->
 ![plus](img/plus.png) <!-- .element: class="noborder" -->
-![Packer logo](img/packer-logo.png) <!-- .element: class="noborder" -->
-![plus](img/plus.png) <!-- .element: class="noborder" -->
 ![Consul logo](img/consul-logo.png) <!-- .element: class="noborder" -->
 
 Slides: [xebia.github.io/immutable-meetup](http://xebia.github.io/immutable-meetup)
 
-Simon van der Veldt - [svanderveldt@xebia.com](mailto:svanderveldt@xebia.com)
-
 Adriaan de Jonge - [adejonge@xebia.com](mailto:adejonge@xebia.com)
 
+<sup>*Initial version created together with [Simon van der Veldt](mailto:svanderveldt@xebia.com)*</sup>
 
 !SLIDE
 # Introduction
