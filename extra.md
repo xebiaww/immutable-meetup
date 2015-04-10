@@ -4,46 +4,54 @@
 ## Inject key-value pairs as Environment Variable
 
 !SUB
-Install essentials
+Install essentials for environment variables
 
 ```
-{
-  "builders": [
-    {
-      "type": "docker",
-      "image": "consul:dns",
-      "export_path": "consul-ui.tar",
-      "pull": false
-    }
-  ],
-  "provisioners": [
-    {
-      "type": "shell",
-      "inline": [
-        "wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.3.1_web_ui.zip",
-        "mkdir ui",
-        "unzip 0.3.1_web_ui.zip -d /opt/ui",
-        "rm 0.3.1_web_ui.zip"
-      ]
-    }
-  ]
-}
+FROM xebia/consul-dns
+RUN wget --no-check-certificate https://github.com/hashicorp/envconsul/releases/download/v0.5.0/envconsul_0.5.0_linux_amd64.tar.gz
+RUN tar -zxvf envconsul_0.5.0_linux_amd64.tar.gz
+RUN ls
+RUN chmod 755 ./envconsul_0.5.0_linux_amd64
+CMD /opt/consul agent -data-dir /tmp/consul -config-dir /opt/config/ -client 0.0.0.0 -bind 0.0.0.0 > /var/consul.log & bash
 ```
+!SUB
+
+Run the container and join the cluster
 
 !SUB
 Set key-value pairs using the HTTP API
 ```
-curl -X PUT -d 'value' http://localhost:8500/v1/kv/web/key
+curl -X PUT -d 'myvalue' http://localhost:8500/v1/kv/web/mykey
 ```
 
 !SUB
-You can also set key-value pairs using the Consul web ui
+Install web ui
+
+```
+FROM xebia/consul-dns
+RUN wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.5.0_web_ui.zip
+RUN mkdir ui
+RUN unzip 0.5.0_web_ui.zip -d /opt/ui
+RUN rm 0.5.0_web_ui.zip
+CMD /opt/consul agent -data-dir /tmp/consul -config-dir /opt/config/ -ui-dir /opt/ui/dist -client 0.0.0.0 -bind 0.0.0.0 > /var/consul.log & bash
+```
+
+!SUB
+Run web ui and expose port and join the cluster
+
+```
+docker $RUN -p 8500:8500 xebia/consul-ui
+consul join {IP of one of cluster members}
+```
+
+!SUB
+Now you can also set key-value pairs using the Consul web ui
 ![Consul web ui](img/consul-webui.png) <!-- .element: class="noborder" -->
 [consul.io/intro/getting-started/ui](http://www.consul.io/intro/getting-started/ui.html)
 
 
 !SUB
-Configure environment variables
+Go back to consul-env container and check the changes you make in the UI
 
 ```
 ./envconsul_linux_amd64 -addr="localhost:8500" prefix env
