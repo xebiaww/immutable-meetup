@@ -5,7 +5,7 @@ with
 ![plus](img/plus.png) <!-- .element: class="noborder" -->
 ![Consul logo](img/consul-logo.png) <!-- .element: class="noborder" -->
 
-Slides: [xebia.github.io/immutable-meetup](http://xebia.github.io/immutable-meetup)
+Slides: [blog.xebia.in/immutable-meetup](http://blog.xebia.in/immutable-meetup)
 
 Adriaan de Jonge - [adejonge@xebia.com](mailto:adejonge@xebia.com)
 
