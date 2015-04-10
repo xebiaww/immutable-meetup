@@ -47,32 +47,17 @@ Install boot2docker
 [docs.docker.com/installation](http://docs.docker.com/installation)
 
 !SUB
-Start boot2docker and ssh into it
+Start boot2docker
 ```
 boot2docker start
-boot2docker ssh
-```
-
-!SUB
-Install Packer (inside boot2docker)
-```
-wget http://dl.bintray.com/mitchellh/packer/0.6.1_linux_amd64.zip
-unzip 0.6.1_linux_amd64.zip -d /usr/local/bin/
-```
-
-!SUB
-Check if it works
-```
-packer --version
-> Packer v0.6.1
 ```
 
 !SUB
 Get the files
 
-[github.com/xebia/immutable-meetup](https://github.com/xebia/immutable-meetup)
+[github.com/xebiaww/immutable-meetup](https://github.com/xebiaww/immutable-meetup)
 ```
-git clone https://github.com/xebia/immutable-meetup.git
+git clone https://github.com/xebiaww/immutable-meetup.git
 ```
 
 
