@@ -172,7 +172,7 @@ Create a new image that adds service.json to /config directory:
 
 
 
-!SLIDE
+!SUB
 ## Configure Service Definition
 
 This time we add the command to startup Consul to avoid typing the same thing over and over
