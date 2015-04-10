@@ -129,16 +129,25 @@ ADD config /opt/config/
 Build your image and tag it as `xebia/consul-dns`
 
 !SUB
-Add `-config-dir /opt/config/` to the consul command
+Start the docker image and check that the DNS does not work yet
 
-```d
+```
 docker run -ti  --dns 127.0.0.1 -h myhost xebia/consul-dns bash
+ping google.com
+cat /etc/resolv.conf
+```
+
+!SUB
+Start consul with the new configuration: `-config-dir /opt/config/` and check again:
+
+```
 consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log & 
+ping google.com
 ```
 
 !SUB
 
-Try the DNS:
+Now try internal nodes
 
 ```
 dig myhost.node.consul
@@ -149,7 +158,7 @@ ping myhost.node.consul
 !SLIDE
 ## Configure Service Definition
 
-Add service.json to /config directory:
+Create a new image that adds service.json to /config directory:
 
 ```
 {
@@ -159,6 +168,19 @@ Add service.json to /config directory:
         "port": 8080
     }
 }
+```
+
+
+
+!SLIDE
+## Configure Service Definition
+
+This time we add the command to startup Consul to avoid typing the same thing over and over
+
+```
+FROM xebia/consul-dns
+ADD config /opt/config/
+CMD /opt/consul agent -data-dir /tmp/consul -config-dir /opt/config/ -dc xebia -client 0.0.0.0 -bind 0.0.0.0 > /var/consul.log & bash
 ```
 
 !SUB
