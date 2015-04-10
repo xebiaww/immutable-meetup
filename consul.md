@@ -191,6 +191,8 @@ Use service:
 dig fruit.service.consul
 ```
 
+
+
 !SUB
 Use tag:
 
@@ -199,11 +201,53 @@ dig master.fruit.service.consul
 ```
 
 !SUB
+
 Try adding one more container to the cluster and `dig` again
 
-!SUB
-Make this work with the web server image you made in the Packer section:
+```
+docker run -ti --dns 127.0.0.1 xebia/consul-service
+consul join {IP OF FIRST IMAGE}
+dig fruit.service.consul
+consul leave
+```
 
+!SECTION
+
+Now set up the Python web app to run the service
+
+```
+#!/usr/bin/python
+# From http://www.acmesystems.it/python_httpserver
+from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+
+PORT_NUMBER = 8080
+
+class myHandler(BaseHTTPRequestHandler):
+    
+    #Handler for the GET requests
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type','text/html')
+        self.end_headers()
+        # Send the html message
+        self.wfile.write("Hello World!\n")
+        return
+
+try:
+    #Create a web server and define the handler to manage the incoming request
+    server = HTTPServer(('', PORT_NUMBER), myHandler)
+    print 'Started httpserver on port ' , PORT_NUMBER
+    
+    #Wait forever for incoming htto requests
+    server.serve_forever()
+
+except KeyboardInterrupt:
+    print '^C received, shutting down the web server'
+    server.socket.close()
+```
+
+!SUB
+And check if it works
 ```
 curl fruit.service.consul:8080
 ```
