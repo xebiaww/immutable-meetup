@@ -1,0 +1,23 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "consul:dns",
+      "export_path": "consul-mongo.tar",
+      "pull": false
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "echo Do it yourself"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "config/",
+      "destination": "/opt/config/"
+    }
+  ]
+}

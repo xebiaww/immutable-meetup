@@ -1,0 +1,7 @@
+{
+    "service": {
+        "name": "fruit",
+        "tags": ["master"],
+        "port": 8080
+    }
+}
