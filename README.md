@@ -35,7 +35,7 @@ Build and tag Docker image:
 
 Set DNS for Docker image and assign hostname:
 
-- export RUN=run -ti --dns 127.0.0.1
+- export RUN="run -ti --dns 127.0.0.1"
 - docker $RUN -h mybase xebia/consul-base
 - docker $RUN -h mydns xebia/consul-dns
 - docker $RUN -h mysvc xebia/consul-service
@@ -43,7 +43,16 @@ Set DNS for Docker image and assign hostname:
 - docker $RUN -h myui -p 8500:8500 xebia/consul-ui
 - docker $RUN -h myapp xebia/consul-python
 
+Consul commands:
 
+- Single, unconfigured server: 
+  - consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log &
+- Unconfigured client: 
+  - consul agent -data-dir /tmp/consul > /var/consul.log &
+- Single, configured server: 
+  - consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log &
+- Configured client:
+  - consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log &
 
 Set Hostname:
 
