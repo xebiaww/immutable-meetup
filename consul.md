@@ -144,7 +144,6 @@ docker run -ti  --dns 127.0.0.1 -h myhost xebia/consul-dns bash
 ping google.com
 cat /etc/resolv.conf
 ```
-This server we will use as central point throughout the rest of the workshop
 
 !SUB
 Start consul with the new configuration: `-config-dir /opt/config/` and check again:
@@ -153,6 +152,7 @@ Start consul with the new configuration: `-config-dir /opt/config/` and check ag
 consul agent -server -bootstrap-expect 1 -config-dir /opt/config/ -data-dir /tmp/consul > /var/consul.log & 
 ping google.com
 ```
+*This server we will use as central point throughout the rest of the workshop so please save the IP address again*
 
 !SUB
 
@@ -193,13 +193,17 @@ CMD /opt/consul agent -data-dir /tmp/consul -config-dir /opt/config/ -dc xebia -
 ```
 
 !SUB
+## Note
+
+In this workshop we are running Consul in each and every container. This will help us play around with Consul. However, you may prefer a setup with a single, central Consul container per Docker host once you start using this setup in larger environments.
+
+!SUB
 
 Use service:
 
 ```
 dig fruit.service.consul
 ```
-
 
 
 !SUB
