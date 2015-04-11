@@ -331,7 +331,7 @@ See the restarting of your "application" in case of updates
 ```
 envconsul web /bin/sh -c "env; echo "-----"; sleep 1000"
 ```
-Go back to consul-env container and check the changes you make in the UI
+*Go back to consul-env container and check the changes you make in the UI*
 
 !SLIDE
 
