@@ -315,7 +315,7 @@ consul join {IP of one of cluster members}
 ```
 
 !SUB
-Now you can also set key-value pairs using the Consul web ui at http://192/168.59.103:8500
+Now you can also set key-value pairs using the Consul web ui at http://192.168.59.103:8500
 ![Consul web ui](img/consul-webui.png) <!-- .element: class="noborder" -->
 [consul.io/intro/getting-started/ui](http://www.consul.io/intro/getting-started/ui.html)
 
@@ -333,3 +333,6 @@ envconsul web /bin/sh -c "env; echo "-----"; sleep 1000"
 ```
 Go back to consul-env container and check the changes you make in the UI
 
+!SLIDE
+
+## Can execute one command on all the Consul nodes?
