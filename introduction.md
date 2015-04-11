@@ -9,7 +9,7 @@ Slides: [blog.xebia.in/immutable-meetup](http://blog.xebia.in/immutable-meetup)
 
 Adriaan de Jonge - [adejonge@xebia.com](mailto:adejonge@xebia.com)
 
-<sup style="font-size: 10px;">*Initial version created together with [Simon van der Veldt](mailto:svanderveldt@xebia.com)*</sup>
+<sup style="font-size: 16px;">*Initial version created together with [Simon van der Veldt](mailto:svanderveldt@xebia.com)*</sup>
 
 !SLIDE
 # Introduction
