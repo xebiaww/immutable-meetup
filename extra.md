@@ -1,5 +1,21 @@
 # Extra exercises
 
+!SLIDE
+## DIY
+
+Create a [configuration file](https://hashicorp.com/blog/introducing-consul-template.html) that [updates dynamically](https://github.com/hashicorp/consul-template) with changes in your Consul cluster.
+
+
+!SLIDE
+## DIY
+
+Perform [health checks](https://www.consul.io/docs/agent/checks.html) on each service
+
+!SLIDE
+## DIY
+
+Configure a [watch](https://www.consul.io/docs/agent/watches.html) and trigger it 
+
 
 !SLIDE
 ## DIY
@@ -10,46 +26,14 @@ Build & run a mongodb image
 Connect `hellowebworld` to MongoDB using Consul
 
 !SUB
-Install essentials:
+Some pointers
 
 ```
-{
-  "builders": [
-    {
-      "type": "docker",
-      "image": "consul:dns",
-      "export_path": "consul-python.tar",
-      "pull": false
-    }
-  ],
-  "provisioners": [
-    {
-      "type": "shell",
-      "inline": [
-        "apt-get -y install python",
-        "wget https://bootstrap.pypa.io/get-pip.py",
-        "python get-pip.py",
-        "pip install pymongo"
-      ]
-    },
-    {
-      "type": "file",
-      "source": "config/",
-      "destination": "/opt/config/"
-    },
-    {
-      "type": "file",
-      "source": "ws.py",
-      "destination": "/opt/ws.py"
-    }
-  ]
-}
+apt-get -y install python",
+wget https://bootstrap.pypa.io/get-pip.py
+python get-pip.py
+pip install pymongo
 ```
-
-!SLIDE
-## DIY
-
-Perform health checks on each service
 
 !SLIDE
 ## DIY
