@@ -198,6 +198,16 @@ CMD /opt/consul agent -data-dir /tmp/consul -config-dir /opt/config/ -dc xebia -
 In this workshop we are running Consul in each and every container. This will help us play around with Consul. However, you may prefer a setup with a single, central Consul container per Docker host once you start using this setup in larger environments.
 
 !SUB
+Build and run your service container, check that the service is running and join the cluster
+
+```
+docker build -t xebia/consul-service consul-service
+docker run -ti --dns 127.0.0.1 -h mysvc xebia/consul-service
+ps
+consul join {IP OF SERVER CONTAINER}
+```
+
+!SUB
 
 Use service:
 
