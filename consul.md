@@ -336,3 +336,5 @@ Go back to consul-env container and check the changes you make in the UI
 !SLIDE
 
 ## Can execute one command on all the Consul nodes?
+
+Try getting the last 5 lines of the consul log file on every node in a single command.
