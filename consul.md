@@ -292,6 +292,7 @@ Set key-value pairs using the HTTP API
 ```
 curl -X PUT -d 'myvalue' http://localhost:8500/v1/kv/web/mykey
 ```
+*You should be able to guess how to read them. Recognize the [encoding](https://www.base64decode.org/) of the values?*
 
 !SUB
 Install web ui
