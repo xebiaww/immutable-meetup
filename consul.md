@@ -219,7 +219,7 @@ Try adding one more container to the cluster and `dig` again
 
 ```
 docker run -ti --dns 127.0.0.1 xebia/consul-service
-consul join {IP OF FIRST IMAGE}
+consul join {IP OF SERVER CONTAINER}
 dig fruit.service.consul
 consul leave
 ```
