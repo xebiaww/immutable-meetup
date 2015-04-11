@@ -81,7 +81,7 @@ Create a 2nd consul container
 
 ```
 docker run -ti xebia/consul-base bash
-consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul > /var/consul.log & 
+consul agent -data-dir /tmp/consul > /var/consul.log & 
 ```
 
 
@@ -95,6 +95,14 @@ consul join {IP OF FIRST IMAGE}
 ```
 consul members
 ```
+
+!SUB
+
+*You have just created your first, small consul cluster*
+
+ - Your cluster consists of one server and one client
+ - In production, it is recommended to have 3 or 5 servers
+ - In the next step, we are going to replace the server
 
 !SLIDE
 ## Configure DNS with Consul
@@ -136,6 +144,7 @@ docker run -ti  --dns 127.0.0.1 -h myhost xebia/consul-dns bash
 ping google.com
 cat /etc/resolv.conf
 ```
+This server we will use as central point throughout the rest of the workshop
 
 !SUB
 Start consul with the new configuration: `-config-dir /opt/config/` and check again:
