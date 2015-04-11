@@ -335,6 +335,6 @@ envconsul web /bin/sh -c "env; echo "-----"; sleep 1000"
 
 !SLIDE
 
-## Can execute one command on all the Consul nodes?
+## Can you execute one command on all the Consul nodes?
 
-Try getting the last 5 lines of the consul log file on every node in a single command.
+Try getting the last 5 lines of the consul log file on every node in a single [command](https://www.consul.io/docs/commands/exec.html).
