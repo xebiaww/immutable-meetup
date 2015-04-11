@@ -39,5 +39,3 @@ pip install pymongo
 ## DIY
 
 Configure HAProxy as a load balancer using Consul
-
-[hashicorp.com/blog/haproxy-with-consul](http://hashicorp.com/blog/haproxy-with-consul.html)
