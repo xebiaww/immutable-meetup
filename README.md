@@ -3,7 +3,15 @@
 ## Docker
 
 - boot2docker start
-- export DOCKER_HOST=tcp://192.168.59.103:2375
+- export DOCKER_HOST=tcp://192.168.59.103:2375 (in setup without SSH)
+
+Disable SSH (not recommended but makes life easier for playing around with REST API)
+
+- boot2docker ssh
+- sudo echo DOCKER_TLS=no > /var/lib/boot2docker/profile
+- sudo /etc/init.d/docker restart
+- exit
+
 
 Delete all containers:
 
