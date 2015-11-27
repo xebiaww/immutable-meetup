@@ -51,7 +51,7 @@ RUN wget --no-check-certificate https://dl.bintray.com/mitchellh/consul/0.5.2_li
 Build, import & run the image
 
 ```
-docker build -t xebia/consul-base consul-base
+docker build -t xebia/consul-base .
 docker run -ti xebia/consul-base bash
 ```
 
